@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom'
 
 import { useAuth } from '../hooks/useAuth';
+import { database } from '../services/firebase';
 
-import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
@@ -10,28 +11,45 @@ import { Button } from '../components/Button';
 import '../styles/auth.scss'
 
 export function NewRoom() {
+  const history = useHistory();
+
   const { user } = useAuth()
+  const [newRoom, setNewRoom] = useState('');
+
+  async function handleCreateNewRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if (newRoom.trim() === '') {
+      return;
+    }
+
+    const roomRef = database.ref('rooms')
+
+    const firebaseRoom = await roomRef.push({
+      title: newRoom,
+      authorId: user?.id,
+    })
+
+    history.push(`/rooms/${firebaseRoom.key}`)
+  }
 
   return (
     <div id="page-auth">
-      <aside>
-        <img src={illustrationImg} alt="Perguntas e respostas" />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo-real</p>
+      <aside className="user-id">
+        <img className="user-icon" src={user?.avatar} alt="Imagem do usuário" />
+        <strong>{user?.name}</strong>
       </aside>
       <main>
         <div className="main-content">
-          <div className="user-id">
-            {user?.name}
-            <img className="user-icon" src={user?.avatar} alt="Imagem do usuário" />
-          </div>
           <img src={logoImg} alt="LetMeAsk" />
           <h2>Criar uma nova sala</h2>
           <div className="separator">ou entre em uma sala</div>
-          <form>
+          <form onSubmit={handleCreateNewRoom}>
             <input
               type="text"
               placeholder="Nome da sala"
+              onChange={event => setNewRoom(event.target.value)}
+              value={newRoom}
             />
             <Button type="submit">
               Criar sala

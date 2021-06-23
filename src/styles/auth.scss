@@ -33,6 +33,27 @@
     }
   }
 
+  aside.user-id{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+
+    img{
+      max-width: 220px;
+
+      border: 2px solid #f8f8f8;
+      border-radius:50%;
+    }
+
+    strong {
+      font-size: 50px;
+      word-wrap: break-word;
+
+      -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.1)));;
+    }
+  }
+
   main {
     flex: 8;
 
@@ -51,23 +72,6 @@
     max-width: 320px;
     align-items: stretch;
     text-align: center;
-
-    .user-id{
-      padding: 20px;
-      gap: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      font-size: 25px;
-
-      img{
-        width: 190px;
-        border: 2px solid #333;
-        border-radius:50%;
-        
-      }
-    }
 
     > img {
       align-self: center;
