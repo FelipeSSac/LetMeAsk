@@ -1,16 +1,16 @@
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
-import { useAuth } from '../hooks/useAuth';
-import { database } from '../services/firebase';
+import { useAuth } from '../../hooks/useAuth';
+import { database } from '../../services/firebase';
 
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
-import googleIconImg from '../assets/images/google-icon.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
+import googleIconImg from '../../assets/images/google-icon.svg';
 
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 
-import '../styles/auth.scss'
+import '../../styles/auth.scss'
 
 export function Home() {
   const history = useHistory();
@@ -35,10 +35,16 @@ export function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      alert('A sala não existe!')
-    } else {
-      history.push(`/rooms/${roomCode}`)
+      alert('A sala não existe.')
+      return;
     }
+
+    if (roomRef.val().endedAt) {
+      alert('Sala encerrada.')
+      return;
+    }
+
+    history.push(`/rooms/${roomCode}`)
   }
 
   return (
