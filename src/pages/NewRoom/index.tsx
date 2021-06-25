@@ -9,6 +9,7 @@ import logoImg from '../../assets/images/logo.svg';
 import { Button } from '../../components/Button';
 
 import '../../styles/auth.scss'
+import toast from 'react-hot-toast';
 
 export function NewRoom() {
   const history = useHistory();
@@ -20,6 +21,7 @@ export function NewRoom() {
     event.preventDefault();
 
     if (newRoom.trim() === '') {
+      toast.error('Preencha o nome da sala!');
       return;
     }
 
@@ -30,7 +32,7 @@ export function NewRoom() {
       authorId: user?.id,
     })
 
-    history.push(`/rooms/${firebaseRoom.key}`)
+    history.push(`/admin/rooms/${firebaseRoom.key}`)
   }
 
   return (

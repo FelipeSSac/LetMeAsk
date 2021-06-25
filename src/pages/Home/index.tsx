@@ -11,6 +11,7 @@ import googleIconImg from '../../assets/images/google-icon.svg';
 import { Button } from '../../components/Button';
 
 import '../../styles/auth.scss'
+import toast from 'react-hot-toast';
 
 export function Home() {
   const history = useHistory();
@@ -29,18 +30,19 @@ export function Home() {
     event.preventDefault();
 
     if (roomCode.trim() === '') {
+      toast.error('Preencha o código da sala!');
       return;
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      alert('A sala não existe.')
+      toast.error('A sala não existe.')
       return;
     }
 
     if (roomRef.val().endedAt) {
-      alert('Sala encerrada.')
+      toast.error('Sala encerrada.')
       return;
     }
 
@@ -59,7 +61,7 @@ export function Home() {
           <img src={logoImg} alt="LetMeAsk" />
           <button onClick={handleCreateRoom} className="create-room">
             <img src={googleIconImg} alt="Logo do Google" />
-            Crie sua sala com o Google
+            Faça login com a conta do Google
           </button>
           <div className="separator">ou entre em uma sala</div>
           <form onSubmit={handleJoinRoom}>

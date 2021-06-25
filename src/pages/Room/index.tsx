@@ -12,6 +12,7 @@ import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
 
 import '../../styles/room.scss'
+import toast from 'react-hot-toast';
 
 type RoomParams = {
   id: string;
@@ -28,11 +29,13 @@ export function Room() {
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
     if (newQuestion.trim() === '') {
+      toast.error('Digite uma pergunta válida!');
       return;
     }
 
     if (!user) {
-      throw new Error('Você deve estar logado!')
+      toast.error('Você deve estar logado!');
+      return;
     }
 
     const question = {

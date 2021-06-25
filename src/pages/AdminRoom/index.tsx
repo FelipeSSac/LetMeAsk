@@ -13,8 +13,11 @@ import answerImg from '../../assets/images/answer.svg';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
+import { DeleteModal } from '../../components/DeleteModal';
 
 import '../../styles/room.scss';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 type RoomParams = {
   id: string;
@@ -27,11 +30,14 @@ export function AdminRoom() {
   const roomId = params.id;
 
   const { title, questions } = useRoom(roomId);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalQuestion, setModalQuestion] = useState('');
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
     })
+    toast.success('Sala encerrada com sucesso!')
     history.push('/')
   }
 
@@ -47,14 +53,21 @@ export function AdminRoom() {
     });
   }
 
-  async function handleDeleteQuestion(questionId: string) {
-    if (window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-    }
+  function handleDeleteModal(questionId: string) {
+    setModalIsOpen(!modalIsOpen);
+    setModalQuestion(questionId)
   }
 
   return (
     <div id="page-room">
+
+      <DeleteModal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+        questionId={modalQuestion}
+        roomId={roomId}
+      />
+
       <header>
         <div className="content">
           <img src={logoImg} alt="LetMeAsk" />
@@ -98,7 +111,7 @@ export function AdminRoom() {
                 )}
                 <button
                   type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+                  onClick={() => handleDeleteModal(question.id)}
                 >
                   <img src={deleteImg} alt="Remover pergunta" />
                 </button>
