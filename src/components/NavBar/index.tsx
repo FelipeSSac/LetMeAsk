@@ -16,7 +16,8 @@ type NavBarProps = {
 
 export function NavBar({ code, isAdmin, childrenFunction, children }: NavBarProps) {
   return (
-    <header className={darkMode ? 'dark' : ''}>
+    // <header className={darkMode ? 'dark' : ''}>
+    <header>
       <div className="content">
         <img src={logoImg} alt="LetMeAsk" />
         {code === 'Nav' ? (
