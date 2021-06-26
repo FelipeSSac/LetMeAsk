@@ -22,9 +22,9 @@ export function DropButton() {
   }
 
   const handleCheck = useCallback(() => {
-    context.darkMode = dark;
+    // context.darkMode = dark;
     setDark(!dark)
-    console.log(context.darkMode)
+    // console.log(context.darkMode)
   }, [dark])
 
   return (
