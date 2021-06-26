@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { database } from '../../services/firebase';
 
 import './styles.scss';
+import cx from 'classnames';
 import toast from 'react-hot-toast';
 
 type DeleteModalProps = {
@@ -10,9 +11,10 @@ type DeleteModalProps = {
   setModalIsOpen: (modalIsOpen: boolean) => void;
   questionId: string;
   roomId: string;
+  isDark?: boolean;
 }
 
-export function DeleteModal({ modalIsOpen, setModalIsOpen, questionId, roomId }: DeleteModalProps) {
+export function DeleteModal({ modalIsOpen, setModalIsOpen, questionId, roomId, isDark = false }: DeleteModalProps) {
   Modal.setAppElement('#root');
 
   function handleDeleteModal() {
@@ -27,7 +29,7 @@ export function DeleteModal({ modalIsOpen, setModalIsOpen, questionId, roomId }:
 
   return (
     <Modal
-      className="delete-modal"
+      className={cx("delete-modal", { dark: isDark })}
       overlayClassName="delete-overlay"
       isOpen={modalIsOpen}
       onRequestClose={handleDeleteModal}

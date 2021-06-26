@@ -62,6 +62,7 @@ export function AdminRoom() {
         setModalIsOpen={setModalIsOpen}
         questionId={modalQuestion}
         roomId={roomId}
+        isDark={Theme.darkMode}
       />
 
       <NavBar
