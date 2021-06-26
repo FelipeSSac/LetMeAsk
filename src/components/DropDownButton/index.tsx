@@ -1,10 +1,9 @@
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import ModeToggle from "react-dark-mode-toggle";
-// import { AuthContext } from '../../contexts/AuthContext';
-
+import { useDark } from '../../hooks/useDark';
 
 import './styles.scss';
 
@@ -12,7 +11,7 @@ export function DropButton() {
   const ref = useDetectClickOutside({ onTriggered: handleMenuClose });
 
   const [isSelected, setIsSelected] = useState(false);
-  const [dark, setDark] = useState(false);
+  const Theme = useDark();
 
 
   function handleMenuClose() {
@@ -20,8 +19,8 @@ export function DropButton() {
   }
 
   const handleCheck = useCallback(() => {
-    setDark(!dark)
-  }, [dark])
+    Theme.setDarkMode(!Theme.darkMode)
+  }, [Theme])
 
   return (
     <div id="dropdown" ref={ref}>
@@ -29,11 +28,11 @@ export function DropButton() {
         Configurações
       </button>
       <ul className={isSelected ? ('select') : ('')}>
-        <div onClick={handleCheck} className={dark ? 'night' : 'day'}>
-          <ModeToggle className='mode-toggle' size={70} checked={dark} />
-          <div style={{ width: 100 }}>Mudar para {dark ? 'Dia' : 'Noite'}</div>
+        <div onClick={handleCheck} className={Theme.darkMode ? 'night' : 'day'}>
+          <ModeToggle className='mode-toggle' size={70} checked={Theme.darkMode} />
+          <div style={{ width: 100 }}>Mudar para {Theme.darkMode ? 'Dia' : 'Noite'}</div>
         </div>
-        <button className={dark ? 'night' : 'day'} >Sair</button>
+        <button className={Theme.darkMode ? 'night' : 'day'} >Sair</button>
       </ul>
     </div >
   )

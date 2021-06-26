@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 
 import { useRoom } from '../../hooks/useRoom'
 import { useAuth } from '../../hooks/useAuth';
+import { useDark } from '../../hooks/useDark';
+
 import { database } from '../../services/firebase';
 
 import { Button } from '../../components/Button';
@@ -10,6 +12,7 @@ import { NavBar } from '../../components/NavBar';
 import { Question } from '../../components/Question';
 
 import '../../styles/room.scss'
+import cx from 'classnames';
 import toast from 'react-hot-toast';
 
 type RoomParams = {
@@ -18,10 +21,13 @@ type RoomParams = {
 
 export function Room() {
   const { user } = useAuth();
-  const params = useParams<RoomParams>();
-  const [newQuestion, setNewQuestion] = useState('');
-  const roomId = params.id;
+  const Theme = useDark();
 
+  const params = useParams<RoomParams>();
+
+  const [newQuestion, setNewQuestion] = useState('');
+
+  const roomId = params.id;
   const { title, questions } = useRoom(roomId);
 
   async function handleSendQuestion(event: FormEvent) {
@@ -62,30 +68,29 @@ export function Room() {
   }
 
   return (
-    // <div id="page-room" className={darkMode ? 'dark' : ''}>
-    <div id="page-room">
+    <div id="page-room" className={cx({ dark: Theme.darkMode })} >
 
       <NavBar
         code={roomId}
       />
 
-      <main className="content">
+      <main className="content" >
         <div className="room-title">
-          <h1>Sala {title}</h1>
+          <h1 className={cx({ dark: Theme.darkMode })}>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
         <form onSubmit={handleSendQuestion}>
           <textarea
+            className={cx({ dark: Theme.darkMode })}
             placeholder="O que você quer perguntar?"
             onChange={event => setNewQuestion(event.target.value)}
             value={newQuestion}
           />
           <div className="form-footer">
             {user ? (
-              <div className="user-info">
+              <div className={cx("user-info", { dark: Theme.darkMode })}>
                 <img src={user.avatar} alt={user.name} />
-                {/* <span className={darkMode ? 'dark' : ''}>{user.name}</span> */}
                 <span>{user.name}</span>
               </div>
             ) : (
@@ -101,6 +106,7 @@ export function Room() {
                 key={question.id}
                 content={question.content}
                 author={question.author}
+                isDark={Theme.darkMode}
                 isAnswered={question.isAnswered}
                 isHighlighted={question.isHighlighted}
               >

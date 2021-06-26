@@ -1,5 +1,6 @@
 #page-room {
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100%;
 
   header {
     .content {
@@ -33,6 +34,16 @@
       display: flex;
       align-items: center;
 
+      h1{
+        font-family: 'Poppins', sans-serif;
+        font-size: 24px;
+        color: #29292e;
+
+        &.dark{
+          color: #fff;
+        }
+      }
+
       span {
         margin-left: 16px;
         background: #e559f9;
@@ -60,6 +71,15 @@
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
         min-height: 130px;
+        max-height: 280px;
+
+        &.dark{
+          color: #fff;
+          background: #000;
+          border: 1px solid #835AFD;
+          box-shadow: 0px 0px 16px 6px #835AFD;
+        }
+
       }
 
       
@@ -78,6 +98,20 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
+          }
+
+          span {
+            margin-left: 8px;
+            color:  #29292e;
+            font-weight: 500;
+            font-size: 14px;
+          }
+        }
+
+        .dark {
+          span{
+           color: #fff;
+           filter: drop-shadow(0 0 10px #835AFD);
           }
         }
 
@@ -106,18 +140,16 @@
         color: #333;
       }
     }
+
+    .dark {
+      img {
+        box-shadow: 0px 0px 4px 3px #835AFD;
+      }
+
+      span {
+        color: #fff;
+      }
+    }
   }
   
 }
-h1{
-  font-family: 'Poppins', sans-serif;
-  font-size: 24px;
-  color: #29292e;
-}
-
-  span {
-    margin-left: 8px;
-    color:  #29292e;
-    font-weight: 500;
-    font-size: 14px;
-  }

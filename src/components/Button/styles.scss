@@ -25,6 +25,12 @@
       color: #835afd;
     }
 
+    &.dark {
+      background: #333;
+      border: 1px solid #835afd;
+      color: #fff;
+    }
+
     &:not(:disabled):hover {
       filter: brightness(0.9);
     }

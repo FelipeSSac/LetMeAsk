@@ -5,20 +5,29 @@
   padding: 24px;
 
   & + .question {
-    margin-top: 8px;
+    margin-top: 15px;
   }
 
-  &.highlighted {
-    background: #F4F0FF;
+  &.dark {
+    background: #000;
+    color: #fff;
     border: 1px solid #835AFD;
 
     footer .user-info span {
-      color: #29292e;
+      color: #fff;
+    }
+
+    p {
+      color: #fff;
     }
   }
 
+  &.highlighted {
+    box-shadow: 0px 0px 16px 8px #835AFD;
+  }
+
   &.answered {
-    background: #DBDCDD;
+    filter: brightness(50%);
   }
 
   p {
