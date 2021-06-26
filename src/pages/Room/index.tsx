@@ -5,10 +5,8 @@ import { useRoom } from '../../hooks/useRoom'
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
-import logoImg from '../../assets/images/logo.svg';
-
 import { Button } from '../../components/Button';
-import { RoomCode } from '../../components/RoomCode';
+import { NavBar } from '../../components/NavBar';
 import { Question } from '../../components/Question';
 
 import '../../styles/room.scss'
@@ -19,7 +17,7 @@ type RoomParams = {
 }
 
 export function Room() {
-  const { user } = useAuth();
+  const { user, darkMode } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
@@ -64,13 +62,11 @@ export function Room() {
   }
 
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="LetMeAsk" />
-          <RoomCode code={roomId} />
-        </div>
-      </header>
+    <div id="page-room" className={darkMode ? 'dark' : ''}>
+
+      <NavBar
+        code={roomId}
+      />
 
       <main className="content">
         <div className="room-title">
@@ -88,7 +84,7 @@ export function Room() {
             {user ? (
               <div className="user-info">
                 <img src={user.avatar} alt={user.name} />
-                <span>{user.name}</span>
+                <span className={darkMode ? 'dark' : ''}>{user.name}</span>
               </div>
             ) : (
               <span>Para enviar uma pergunta, <button>faça seu login</button>. </span>

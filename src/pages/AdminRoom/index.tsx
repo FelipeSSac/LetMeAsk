@@ -2,16 +2,14 @@ import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 
 import { useRoom } from '../../hooks/useRoom';
-// import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
-import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
 
-import { Button } from '../../components/Button';
-import { RoomCode } from '../../components/RoomCode';
+import { NavBar } from '../../components/NavBar';
 import { Question } from '../../components/Question';
 import { DeleteModal } from '../../components/DeleteModal';
 
@@ -24,7 +22,7 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-  // const { user } = useAuth();
+  const { darkMode } = useAuth();
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
@@ -59,7 +57,7 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
+    <div id="page-room" className={darkMode ? 'dark' : ''}>
 
       <DeleteModal
         modalIsOpen={modalIsOpen}
@@ -68,15 +66,11 @@ export function AdminRoom() {
         roomId={roomId}
       />
 
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="LetMeAsk" />
-          <div>
-            <RoomCode code={roomId} />
-            <Button onClick={handleEndRoom} isOutlined >Encerrar sala</Button>
-          </div>
-        </div>
-      </header>
+      <NavBar
+        code={roomId}
+        childrenFunction={handleEndRoom}
+        isAdmin
+      />
 
       <main className="content">
         <div className="room-title">

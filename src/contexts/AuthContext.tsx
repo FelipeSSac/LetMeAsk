@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { auth, firebase } from "../services/firebase";
 
 type User = {
@@ -10,6 +11,7 @@ type User = {
 type AuthContextType = {
   user: User | undefined;
   signInWithGoogle: () => Promise<void>;
+  darkMode: boolean;
 }
 
 type AuthContextProviderProps = {
@@ -20,6 +22,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -27,7 +30,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         const { displayName, photoURL, uid } = user;
 
         if (!displayName || !photoURL) {
-          throw new Error('Missing information from Google Account.');
+          toast.error('Informações faltantes da conta Google.');
+          return
         }
 
         setUser({
@@ -65,7 +69,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, darkMode }}>
       {props.children}
     </AuthContext.Provider>
   );

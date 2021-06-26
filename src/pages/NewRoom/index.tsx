@@ -10,11 +10,13 @@ import { Button } from '../../components/Button';
 
 import '../../styles/auth.scss'
 import toast from 'react-hot-toast';
+import { NavBar } from '../../components/NavBar';
+import { DropButton } from '../../components/DropDownButton';
 
 export function NewRoom() {
   const history = useHistory();
 
-  const { user } = useAuth()
+  const { user, darkMode } = useAuth();
   const [newRoom, setNewRoom] = useState('');
 
   async function handleCreateNewRoom(event: FormEvent) {
@@ -36,33 +38,40 @@ export function NewRoom() {
   }
 
   return (
-    <div id="page-auth">
-      <aside className="user-id">
-        <img className="user-icon" src={user?.avatar} alt="Imagem do usuário" />
-        <strong>{user?.name}</strong>
-      </aside>
-      <main>
-        <div className="main-content">
-          <img src={logoImg} alt="LetMeAsk" />
-          <h2>Criar uma nova sala</h2>
-          <div className="separator">ou entre em uma sala</div>
-          <form onSubmit={handleCreateNewRoom}>
-            <input
-              type="text"
-              placeholder="Nome da sala"
-              onChange={event => setNewRoom(event.target.value)}
-              value={newRoom}
-            />
-            <Button type="submit">
-              Criar sala
-            </Button>
-          </form>
-          <p>
-            Quer entrar em uma sala existente?
-            <Link to="/">clique aqui</Link>
-          </p>
-        </div>
-      </main>
+    <div id="page-auth" className='new-room'>
+
+      <NavBar code="Nav" >
+        <DropButton />
+      </NavBar>
+
+      <div className="content">
+        <aside className="user-id">
+          <img className="user-icon" src={user?.avatar} alt="Imagem do usuário" />
+          <strong>{user?.name}</strong>
+        </aside>
+        <main className={darkMode ? 'dark' : ''}>
+          <div className="main-content">
+            <img src={logoImg} alt="LetMeAsk" />
+            <h2>Criar uma nova sala</h2>
+            <div className="separator">ou entre em uma sala</div>
+            <form onSubmit={handleCreateNewRoom}>
+              <input
+                type="text"
+                placeholder="Nome da sala"
+                onChange={event => setNewRoom(event.target.value)}
+                value={newRoom}
+              />
+              <Button type="submit">
+                Criar sala
+              </Button>
+            </form>
+            <p>
+              Quer entrar em uma sala existente?
+              <Link to="/">clique aqui</Link>
+            </p>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }

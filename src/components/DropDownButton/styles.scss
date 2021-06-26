@@ -1,0 +1,101 @@
+#dropdown {
+  position: relative;
+  display: inline-block;
+
+  > button {
+    border-radius: 8px;
+    font-weight: 500;
+    background: #835afd;
+    color: #fff;
+    padding: 0 32px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    border: 0;
+
+    transition: filter 0.2;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+
+  ul {
+    width: 190px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -95px;
+
+    visibility: hidden;
+    opacity: 0%;
+    transition: visibility 0.28s, opacity 0.26s ease;
+    z-index: 1;
+    overflow: auto;
+
+    background: #f1f1f1;
+    border: 1px solid #835afd;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+
+    > button{
+      width: 100%;
+      cursor: pointer;
+
+      background: #fff;
+      border: none;
+      color: #835afd;
+      transition: background-color 0.6s ease,  color 0.6s ease, filter 0.2s;
+
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+    
+    > div{
+      width: 100%;
+      height: 50px;
+      cursor: pointer;
+      transition: background-color 0.6s ease,  color 0.6s ease, filter 0.2s;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      border: none;
+      border-bottom: 1px solid #835afd;
+
+      .mode-toggle{
+        margin: 0;
+        padding: 0;
+      }
+      > div {
+        font-size: 12px;
+        text-align: center;
+      }
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+    
+    .day{
+      color: #835afd ;
+      background-color: #fff;
+    }
+
+    .night{
+      color: #fff ;
+      background-color: #333;
+    }
+  }
+  .select{
+    visibility: visible;
+    opacity: 100%;
+    transition: visibility 0.28s, opacity 0.26s ease;
+  }
+}

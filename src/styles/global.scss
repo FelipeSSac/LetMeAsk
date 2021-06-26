@@ -7,6 +7,28 @@
 body {
   background: #f8f8f8;
   color: #29292e;
+  transition: background-color 0.6s ease,  color 0.6s ease;
+
+  img{
+    filter: none;
+  }
+
+  .dark{
+    background-color: #333;
+    color: #fff;
+
+    h1{
+      color: #fff;
+    }
+
+    span {
+      color: #fff;
+    }
+
+    img{
+      filter: drop-shadow(0px 0px 3px #fff);
+    }
+  }
 }
 
 body, input, button, textarea {

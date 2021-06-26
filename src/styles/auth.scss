@@ -1,6 +1,21 @@
-#page-auth {
+.new-room{
+  display: flex;
+  flex-direction: column;
+
+  > .content{
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+
+  }
+}
+
+.auth{
   display: flex;
   align-items: stretch;
+}
+
+#page-auth {
   height: 100vh;
 
   aside {
