@@ -1,7 +1,5 @@
 import { ReactElement } from 'react';
 
-import { useAuth } from '../../hooks/useAuth';
-
 import { RoomCode } from '../RoomCode';
 import { Button } from '../Button';
 import { DropButton } from '../DropDownButton';
@@ -17,7 +15,6 @@ type NavBarProps = {
 }
 
 export function NavBar({ code, isAdmin, childrenFunction, children }: NavBarProps) {
-  const { darkMode } = useAuth();
   return (
     <header className={darkMode ? 'dark' : ''}>
       <div className="content">

@@ -16,7 +16,7 @@ import { DropButton } from '../../components/DropDownButton';
 export function NewRoom() {
   const history = useHistory();
 
-  const { user, darkMode } = useAuth();
+  const { user } = useAuth();
   const [newRoom, setNewRoom] = useState('');
 
   async function handleCreateNewRoom(event: FormEvent) {
@@ -49,7 +49,8 @@ export function NewRoom() {
           <img className="user-icon" src={user?.avatar} alt="Imagem do usuário" />
           <strong>{user?.name}</strong>
         </aside>
-        <main className={darkMode ? 'dark' : ''}>
+        {/* <main className={darkMode ? 'dark' : ''}> */}
+        <main>
           <div className="main-content">
             <img src={logoImg} alt="LetMeAsk" />
             <h2>Criar uma nova sala</h2>

@@ -2,7 +2,6 @@ import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 
 import { useRoom } from '../../hooks/useRoom';
-import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
 import deleteImg from '../../assets/images/delete.svg';
@@ -22,7 +21,6 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-  const { darkMode } = useAuth();
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
@@ -57,7 +55,8 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room" className={darkMode ? 'dark' : ''}>
+    // <div id="page-room" className={darkMode ? 'dark' : ''}>
+    <div id="page-room">
 
       <DeleteModal
         modalIsOpen={modalIsOpen}

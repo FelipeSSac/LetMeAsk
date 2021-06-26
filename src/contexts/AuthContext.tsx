@@ -11,7 +11,6 @@ type User = {
 type AuthContextType = {
   user: User | undefined;
   signInWithGoogle: () => Promise<void>;
-  darkMode: boolean;
 }
 
 type AuthContextProviderProps = {
@@ -22,7 +21,6 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
-  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -70,7 +68,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle, darkMode }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle }}>
       {props.children}
     </AuthContext.Provider>
   );

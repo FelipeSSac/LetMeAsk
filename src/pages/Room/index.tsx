@@ -17,7 +17,7 @@ type RoomParams = {
 }
 
 export function Room() {
-  const { user, darkMode } = useAuth();
+  const { user } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
@@ -62,7 +62,8 @@ export function Room() {
   }
 
   return (
-    <div id="page-room" className={darkMode ? 'dark' : ''}>
+    // <div id="page-room" className={darkMode ? 'dark' : ''}>
+    <div id="page-room">
 
       <NavBar
         code={roomId}
@@ -84,7 +85,8 @@ export function Room() {
             {user ? (
               <div className="user-info">
                 <img src={user.avatar} alt={user.name} />
-                <span className={darkMode ? 'dark' : ''}>{user.name}</span>
+                {/* <span className={darkMode ? 'dark' : ''}>{user.name}</span> */}
+                <span>{user.name}</span>
               </div>
             ) : (
               <span>Para enviar uma pergunta, <button>faça seu login</button>. </span>

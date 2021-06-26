@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 
 export function Home() {
   const history = useHistory();
-  const { user, signInWithGoogle, darkMode } = useAuth();
+  const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState('');
 
   async function handleCreateRoom() {
@@ -56,7 +56,8 @@ export function Home() {
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
-      <main className={darkMode ? 'dark' : ''}>
+      {/* <main className={darkMode ? 'dark' : ''}> */}
+      <main>
         <div className="main-content">
           <img src={logoImg} alt="LetMeAsk" />
           <button onClick={handleCreateRoom} className="create-room">

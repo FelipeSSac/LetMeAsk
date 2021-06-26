@@ -14,17 +14,13 @@ export function DropButton() {
   const [isSelected, setIsSelected] = useState(false);
   const [dark, setDark] = useState(false);
 
-  // const context = useContext(AuthContext);
-
 
   function handleMenuClose() {
     setIsSelected(false)
   }
 
   const handleCheck = useCallback(() => {
-    // context.darkMode = dark;
     setDark(!dark)
-    // console.log(context.darkMode)
   }, [dark])
 
   return (
