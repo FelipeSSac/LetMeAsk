@@ -3,7 +3,7 @@ import { useCallback, useContext, useState } from 'react';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import ModeToggle from "react-dark-mode-toggle";
-import { AuthContext } from '../../contexts/AuthContext';
+// import { AuthContext } from '../../contexts/AuthContext';
 
 
 import './styles.scss';
@@ -14,7 +14,7 @@ export function DropButton() {
   const [isSelected, setIsSelected] = useState(false);
   const [dark, setDark] = useState(false);
 
-  const context = useContext(AuthContext);
+  // const context = useContext(AuthContext);
 
 
   function handleMenuClose() {
