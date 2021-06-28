@@ -36,3 +36,12 @@ header {
     }
   }
 }
+
+@media (max-width: 859px){
+  .room-code{
+    display: none;
+  }
+  >.button{
+    display: none;
+  }
+}

@@ -41,12 +41,18 @@
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 
+    button + button{
+      border: none;
+    }
+
     > button{
       width: 100%;
       cursor: pointer;
 
       background: #fff;
+      border-radius: 0;
       border: none;
+      border-bottom: 1px solid #835afd;
       color: #835afd;
 
       &:hover {
@@ -89,6 +95,16 @@
     .night{
       color: #fff ;
       background-color: #333;
+    }
+
+    .mobile {
+      display: none;
+    }
+
+    @media (max-width: 859px){
+      .mobile {
+        display: block;
+      }
     }
   }
   .select{

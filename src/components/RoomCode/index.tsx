@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 
 type RoomCodeProps = {
   code: string;
+  isMobile?: boolean;
 }
 
 export function RoomCode(props: RoomCodeProps) {
@@ -19,7 +20,7 @@ export function RoomCode(props: RoomCodeProps) {
   }
 
   return (
-    <button className={cx('room-code', { dark: Theme.darkMode })} onClick={copyRoomCodeToClipboard} aria-label="Copiar código da sala">
+    <button className={cx('room-code', { dark: Theme.darkMode }, { mobile: props.isMobile })} onClick={copyRoomCodeToClipboard} aria-label="Copiar código da sala">
       <div>
         <img src={copyImg} alt='Copiar código da sala' />
       </div>

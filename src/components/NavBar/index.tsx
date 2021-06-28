@@ -17,7 +17,7 @@ type NavBarProps = {
   childrenFunction?: () => void;
 }
 
-export function NavBar({ code, isAdmin, childrenFunction, children }: NavBarProps) {
+export function NavBar({ code, isAdmin, childrenFunction }: NavBarProps) {
   const history = useHistory();
   const Theme = useDark();
 
@@ -55,12 +55,12 @@ export function NavBar({ code, isAdmin, childrenFunction, children }: NavBarProp
           </defs>
         </svg>
         {code === 'Nav' ? (
-          <DropButton />
+          <DropButton code={code} />
         ) : (
           <div>
             <RoomCode code={code} />
             {isAdmin && <Button isDark={Theme.darkMode} onClick={childrenFunction} isOutlined >Encerrar sala</Button>}
-            <DropButton />
+            <DropButton code={code} childrenFunction={childrenFunction} isAdmin={isAdmin} />
           </div>
         )}
       </div>
