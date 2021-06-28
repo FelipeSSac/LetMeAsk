@@ -31,7 +31,7 @@
     margin-left: -95px;
 
     visibility: hidden;
-    opacity: 0%;
+    opacity: 0;
     transition: visibility 0.28s, opacity 0.26s ease;
     z-index: 1;
     overflow: auto;
@@ -109,7 +109,7 @@
   }
   .select{
     visibility: visible;
-    opacity: 100%;
+    opacity: 1;
     transition: visibility 0.28s, opacity 0.26s ease;
   }
 }
