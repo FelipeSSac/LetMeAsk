@@ -29,7 +29,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Clone o projeto e acesse a pasta do mesmo.
 
 ```bash
-$ https://github.com/FelipeSSac/LetMeAsk.git
+$ git clone https://github.com/FelipeSSac/LetMeAsk.git
 $ cd LetMeAsk
 ```
 
